@@ -1,0 +1,22 @@
+namespaces:
+- name: quarkus
+  regions:
+    - aws-eu-west-2
+  retention: 30
+
+identities:
+- id: quarkus-writer
+  type: sa
+  api_key:
+    generate: true
+    expiry_time: 2025-04-01T00:00:00Z
+  roles:
+    global: read
+    namespaces:
+      quarkus:  write
+- id: quarkus-reader
+  type: sa
+  roles:
+    global: read
+    namespaces:
+      quarkus:  read
