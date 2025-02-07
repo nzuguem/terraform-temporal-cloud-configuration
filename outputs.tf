@@ -17,17 +17,15 @@ output "metrics_endpoint" {
   value = temporalcloud_metrics_endpoint.metrics_endpoint.uri
 }
 
-resource "local_file" "client_cert" {
-  content  = tls_locally_signed_cert.client_metrics_cert.cert_pem
-  filename = "${path.module}/client_metrics_cert.pem"
+output "client_cert" {
+  value = tls_locally_signed_cert.client_metrics_cert.cert_pem
 }
 
-resource "local_file" "client_private_key" {
-  content  = tls_private_key.client_metrics_private_key.private_key_pem
-  filename = "${path.module}/client_metrics_private_key.pem"
+output "client_private_key" {
+  value     = tls_private_key.client_metrics_private_key.private_key_pem
+  sensitive = true
 }
 
-resource "local_file" "ca_metrics_cert" {
-  content  = tls_self_signed_cert.ca_metrics_cert.cert_pem
-  filename = "${path.module}/ca_metrics_cert.pem"
+output "ca_metrics_cert" {
+  value = tls_self_signed_cert.ca_metrics_cert.cert_pem
 }

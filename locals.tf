@@ -46,11 +46,11 @@ locals {
 
   identities_namespace_accesses = {
     for identity in local.config.identities :
-    identity.id => flatten([
+    identity.id => [
       for ns_name, role in try(identity.roles.namespaces, {}) : {
         namespace_id = temporalcloud_namespace.namespaces[ns_name].id
         permission   = role
       }
-    ])
+    ]
   }
 }

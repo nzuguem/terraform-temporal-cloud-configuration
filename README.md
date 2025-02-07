@@ -1,4 +1,4 @@
-# Terraform Temporal Cloud Configuration
+# Terraform Temporal Cloud Configuration - IaC As A Service
 
 ## Environment 🚀
 

@@ -1,12 +1,12 @@
 resource "temporalcloud_user" "users_without_or_implicit_ns_accesses" {
   for_each       = { for user in local.users_without_or_implicit_ns_accesses : user.id => user }
-  email          = each.value.email
+  email          = each.value.id
   account_access = each.value.roles.global
 }
 
 resource "temporalcloud_user" "users_with_explicity_ns_accesses" {
   for_each           = { for user in local.users_with_explicit_ns_accesses : user.id => user }
-  email              = each.value.email
+  email              = each.value.id
   account_access     = each.value.roles.global
   namespace_accesses = local.identities_namespace_accesses[each.key]
 }
