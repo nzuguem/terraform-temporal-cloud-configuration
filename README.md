@@ -21,6 +21,14 @@ terraform apply
 
 Seeing changes in Terraform Cloud 😎👌🔥
 
+## View metrics in Grafana
+
+```bash
+docker compose -f grafana/compose.yml up --wait
+```
+
+Visit [http://localhost:3000](http://localhost:3000) and login with `admin` and `admin`.
+
 ## Resources
 
 - [Terraform Temporal Cloud Provider][temporal-tf-provider]

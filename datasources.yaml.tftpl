@@ -1,0 +1,16 @@
+apiVersion: 1
+
+datasources:
+- name: Prometheus
+  type: prometheus
+  uid: prometheus
+  url: ${metrics_uri}
+  editable: true
+  jsonData:
+    tlsAuth: true
+    tlsAuthWithCACert: false
+  secureJsonData:
+    tlsClientCert: |
+      ${indent(6, client_metrics_cert)}
+    tlsClientKey: |
+      ${indent(6, client_metrics_private_key)}
