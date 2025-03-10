@@ -5,7 +5,7 @@ terraform {
   required_providers {
     temporalcloud = {
       source  = "temporalio/temporalcloud"
-      version = "0.6.0"
+      version = "~> 0.6.1"
     }
 
     tls = {

@@ -1,29 +1,38 @@
 namespaces:
-  - name: ns-1
-    regions:
-      - aws-us-east-1
-    retention: 10
-  - name: ns-2
-    regions:
-      - gcp-us-east-1
-    retention: 10
-    custom_search_attributes:
-      - name:  CustomSearchAttribute
-        type: Text
+- name: ns-1
+  regions:
+  - aws-us-east-1
+  retention: 10
+- name: ns-2
+  regions:
+  - gcp-us-east-1
+  retention: 10
+  custom_search_attributes:
+  - name:  CustomSearchAttribute
+    type: Text
 
 identities:
-  - id: john.doe@example.com
-    type: user
-    roles:
-      global: admin
+- id: john.doe@example.com
+  type: user
+  roles:
+    global: admin
+- id: app
+  type: sa
+  api_key:
+    generate: true
+    expiry_time: 2025-08-01T00:00:00Z
+  roles:
+    global: read
+    namespaces:
+      ns-1: write
+      ns-2: read
 
-  - id: app
-    type: sa
-    api_key:
-      generate: true
-      expiry_time: 2025-08-01T00:00:00Z
-    roles:
-      global: read
-      namespaces:
-        ns-1: write
-        ns-2: read
+nexus:
+- endpoint_name: nexus-endpoint-name
+  description: |
+    My description
+  target:
+    namespace: ns-1
+    task_queue: target-task-queue
+  callers_namespaces:
+  - ns-2

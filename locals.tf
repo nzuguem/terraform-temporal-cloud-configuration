@@ -53,4 +53,16 @@ locals {
       }
     ]
   }
+
+  nexus_endpoints = [
+    for nexus in local.config.nexus : {
+      name              = nexus.endpoint_name
+      description       = nexus.description
+      target_ns         = temporalcloud_namespace.namespaces[nexus.target.namespace].id
+      target_task_queue = nexus.target.task_queue
+      callers_namespaces = [
+        for caller_ns in try(nexus.callers_namespaces, []) : temporalcloud_namespace.namespaces[caller_ns].id
+      ]
+    }
+  ]
 }

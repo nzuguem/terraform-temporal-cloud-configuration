@@ -1,8 +1,8 @@
 namespaces:
 - name: quarkus
   regions:
-    - aws-eu-west-2
-  retention: 30
+  - aws-eu-west-2
+  retention: 1
 
 identities:
 - id: quarkus-writer
@@ -20,3 +20,11 @@ identities:
     global: read
     namespaces:
       quarkus:  read
+
+nexus:
+- endpoint_name: quarkus-endpoint
+  description: |
+    My description
+  target:
+    namespace: quarkus
+    task_queue: quarkus-task-queue
